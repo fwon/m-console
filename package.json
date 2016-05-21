@@ -1,0 +1,31 @@
+{
+  "name": "m-comsole",
+  "version": "0.1.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/m-console server"
+  },
+  "bin": {
+    "mcon": "./bin/m-console",
+    "m-console": "./bin/m-console"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fwon/m-console.git"
+  },
+  "keywords": [
+    "web",
+    "remote",
+    "inspector"
+  ],
+  "author": "fwon",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.9.0",
+    "express": "^4.10.2",
+    "socket.io": "^1.4.6"
+  }
+}

@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+console.log('hello');
+var commander = require('commander');
+var meta = require('../package.json');
+
+commander
+        .version(meta.version)
+        .option('-p, --port <n>', 'Start server with specified port.')
+        .option('-i, --ip <n>', 'Set you computer ip.')
+
+commander
+        .command('server')
+        .description('Start m-console server')
+        .action(function() {
+            var server = require('../server');
+            var port = process.env.PORT || commander.port || 3000;
+            var ip = process.env.IP || commander.ip;
+            server.start(port, ip);
+        })
+commander.parse(process.argv);
