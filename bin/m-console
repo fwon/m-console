@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-console.log('hello');
 var commander = require('commander');
 var meta = require('../package.json');
 
