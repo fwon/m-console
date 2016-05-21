@@ -11,7 +11,7 @@ npm install -g m-console
 mcon server
 ```
 default port is 3000
-（默认调试器端口为3000）
+（开启调试服务器，默认调试器端口为3000）
 ```
 mcon server -p 9000
 ```
