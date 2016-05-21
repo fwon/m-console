@@ -16,9 +16,9 @@
     "url": "https://github.com/fwon/m-console.git"
   },
   "keywords": [
-    "web",
-    "remote",
-    "inspector"
+    "debug",
+    "mobile",
+    "console"
   ],
   "author": "fwon",
   "license": "MIT",
