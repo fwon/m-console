@@ -31,3 +31,10 @@ mcon server -p 9000
 ```
 use `-p` to set port by yourself
 （可通过`-p`设置调试器端口号）
+
+```
+mcon server --daemon
+```
+use --daemon to runing Service on backend.
+(可通过--daemon参数让服务运行在后台，可关闭命名窗口)
+![roadmap.path](https://raw.githubusercontent.com/fwon/blog/master/assets/m-console-3.png)
