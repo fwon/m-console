@@ -13,7 +13,6 @@ commander
         .action(function() {
             var server = require('../server');
             var port = process.env.PORT || commander.port || 3000;
-            var ip = process.env.IP || commander.ip;
-            server.start(port, ip);
+            server.start(port);
         })
 commander.parse(process.argv);
