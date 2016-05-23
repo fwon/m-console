@@ -5,7 +5,6 @@ var meta = require('../package.json');
 commander
         .version(meta.version)
         .option('-p, --port <n>', 'Start server with specified port.')
-        .option('-i, --ip <n>', 'Set you computer ip.')
 
 commander
         .command('server')
