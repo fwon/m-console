@@ -5,13 +5,13 @@ var meta = require('../package.json');
 commander
         .version(meta.version)
         .option('-p, --port <n>', 'Start server with specified port.')
+        .option('--daemon', 'Runing server on backend.')
 
 commander
         .command('server')
         .description('Start m-console server')
         .action(function() {
-            var server = require('../server');
-            var port = process.env.PORT || commander.port || 3000;
-            server.start(port);
+            var app = require('../index');
+            app.start(commander);
         })
 commander.parse(process.argv);

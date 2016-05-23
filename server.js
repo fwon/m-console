@@ -5,6 +5,33 @@ var io = require('socket.io')(server);
 var fs = require('fs');
 var colors = require('colors');
 var util = require('./lib/util.js');
+var args = process.argv.join('|');
+var port = /\-\-port\|(\d+)(?:\||$)/.test(args) ? ~~RegExp.$1 : 3000;
+
+function combine(pathnames, callback) {
+    var output = [];
+
+    (function next(i, len) {
+        if (i < len) {
+            fs.readFile(__dirname + pathnames[i], 'utf8', function(err, data) {
+                if (err) {
+                    callback(err);
+                } else {
+                    //替换文件IP和port
+                    var host = 'http://' + util.hostname + ':' + port;
+                    if (pathnames[i] == '/client.js') {
+                        data = data.replace(/G_HOST_PORT/g, host);
+                    }
+
+                    output.push(data);
+                    next(++i, len);
+                }
+            });
+        } else {
+            callback(null, output.join(';\n'));
+        }
+    })(0, pathnames.length);
+}
 
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', req.headers.origin ? req.headers.origin : '*');
@@ -17,7 +44,7 @@ app.get('/m-console.js', function(req, res) {
         '/socket.io.js',
         '/client.js'
     ];
-    util.combine(pathnames, function(err, data) {
+    combine(pathnames, function(err, data) {
         if (err) {
             res.writeHead(404);
             res.end(err.message);
@@ -37,7 +64,7 @@ io.on('connection', function(socket) {
     var _index = devicesAgent.indexOf(socketAgent);
     if (_index < 0) {
         devicesAgent.push(socketAgent);
-        console.log('连接设备' + deviceId + " " + (socketAgent).grey);
+        console.log('连接设备' + deviceId + " " + (socketAgent).gray);
         deviceId++;
     }
     //接收消息
@@ -57,22 +84,11 @@ io.on('connection', function(socket) {
         devicesAgent.splice(_index, 1);
         socket.on('disconnect', function() {
             deviceId--;
-            console.log('断开设备' + deviceId + " " + socketAgent);
+            console.log('断开设备' + deviceId + " " + (socketAgent).gray);
         });
     }
 });
 
-server.start = function(a_port) {
-    port = a_port;
-    server.listen(port, function() {
-        var host = 'http://' + util.hostname + ':' + port;
-        console.log('******************************************************'.yellow);
-        console.log(('<script type="text/javascript" src="'+ host +'/m-console.js"></script>').yellow);
-        console.log('******************************************************'.yellow);
-        console.log('复制以上内容到调试页面，不要关闭此窗口！'.green);
-    });
-}
-
-module.exports = server;
-
-
+server.listen(port, function() {
+    console.log('Listening on port ' + port);
+});
