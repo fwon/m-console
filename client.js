@@ -29,7 +29,6 @@
             var oldLog = window.console[item]
             if (oldLog) {
                 socket.on(consoleEvents[index], function(msg) {
-                    // console.log(msg);
                     oldLog.apply(window.console, msg);
                 });
                 if (isMobile) {
