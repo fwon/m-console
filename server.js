@@ -59,6 +59,7 @@ app.get('/m-console.js', function(req, res) {
 
 var deviceId = 1;
 var devicesAgent = [];
+
 io.on('connection', function(socket) {
     var socketAgent = socket.handshake.headers['user-agent'];
     var _index = devicesAgent.indexOf(socketAgent);
@@ -67,19 +68,13 @@ io.on('connection', function(socket) {
         console.log('连接设备' + deviceId + " " + (socketAgent).gray);
         deviceId++;
     }
-    //接收消息
-    socket.on('LOG', function(msg) {
-        io.emit('LOG', msg);
+
+    ['log', 'info', 'warn', 'error', 'debug'].forEach(function(item) {
+        socket.on(item, function(msg) {
+            io.emit(item, msg);
+        });
     });
-    socket.on('INFO', function(msg) {
-        io.emit('INFO', msg);
-    });
-    socket.on('WARN', function(msg) {
-        io.emit('WARN', msg);
-    });
-    socket.on('ERROR', function(msg) {
-        io.emit('ERROR', msg);
-    });
+
     if (_index > -1) {
         devicesAgent.splice(_index, 1);
         socket.on('disconnect', function() {
