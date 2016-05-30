@@ -69,7 +69,7 @@ io.on('connection', function(socket) {
         deviceId++;
     }
 
-    ['log', 'info', 'warn', 'error', 'debug'].forEach(function(item) {
+    ['LOG', 'INFO', 'WARN', 'ERROR', 'DEBUG'].forEach(function(item) {
         socket.on(item, function(msg) {
             io.emit(item, msg);
         });
