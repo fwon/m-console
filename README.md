@@ -17,11 +17,13 @@ default port is 3000
 ![roadmap.path](https://raw.githubusercontent.com/fwon/blog/master/assets/m-console-1.png)
 
 **step2**
+
 copy script into html file
 (复制调试脚本到html文件)
 ![roadmap.path](https://raw.githubusercontent.com/fwon/blog/master/assets/m-console-2.png)
 
 **step3**
+
 刷新浏览器查看效果 **（进行本地调试时，手机需通过代理链接到电脑）**
 手机上刷新页面，调试信息会出现在PC的控制面板
 ![roadmap.path](https://raw.githubusercontent.com/fwon/blog/master/assets/m-console-demo.gif)
