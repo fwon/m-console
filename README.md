@@ -26,7 +26,7 @@ copy script into html file
 手机上刷新页面，调试信息会出现在PC的控制面板
 ![roadmap.path](https://raw.githubusercontent.com/fwon/blog/master/assets/m-console-demo.gif)
 
-###option
+### option
 ```
 mcon server -p 9000
 ```
