@@ -2,12 +2,12 @@
 remote mobile console tool, console log in pc browser.
 手机远程调试工具，手机通过代理连接上PC后，可以在PC版浏览器打印log和错误日志，方便调试。
 
-###install
+### install
 ```
 npm install -g m-console
 ```
 
-###use
+### use
 **step1**
 ```
 mcon server
